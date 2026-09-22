@@ -1,0 +1,11 @@
+{
+  "type": "module",
+  "scripts": {
+    "start": "paperlesspaper-openintegration dev ./config.json",
+    "check": "paperlesspaper-openintegration check ./config.json",
+    "render": "paperlesspaper-openintegration render ./config.json"
+  },
+  "dependencies": {
+    "@paperlesspaper/openintegration": "^0.1.1"
+  }
+}

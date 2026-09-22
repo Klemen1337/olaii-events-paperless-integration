@@ -1,0 +1,116 @@
+{
+  "name": "Olaii events",
+  "version": "0.1.0",
+  "description": "Displays Olaii events on a paperlesspaper eInk display.",
+  "renderPage": "./render.html",
+  "icon": "./assets/icon.png",
+  "language": [
+    "en",
+    "sl",
+    "de"
+  ],
+  "chromeBin": "C:/Program Files/Google/Chrome/Application/chrome.exe",
+  "nativeSettings": {
+    "columns": 2,
+    "rows": 2,
+    "padding": "1rem",
+    "borderRadius": "1rem",
+    "showInfo": true,
+    "showHeader": true
+  },
+  "formSchema": {
+    "type": "object",
+    "properties": {
+      "columns": {
+        "type": "integer",
+        "title": "Event columns →",
+        "minimum": 1,
+        "maximum": 6,
+        "default": 2
+      },
+      "rows": {
+        "type": "integer",
+        "title": "Event rows ↓",
+        "minimum": 1,
+        "maximum": 6,
+        "default": 4
+      },
+      "padding": {
+        "type": "string",
+        "title": "Padding",
+        "default": "2rem"
+      },
+      "borderRadius": {
+        "type": "string",
+        "title": "Border radius",
+        "default": "1rem"
+      },
+      "showInfo": {
+        "type": "boolean",
+        "title": "Show event info",
+        "default": true
+      },
+      "showHeader": {
+        "type": "boolean",
+        "title": "Show header with logo and render date",
+        "default": true
+      }
+    }
+  },
+  "configVariants": [
+    {
+      "columns": 3,
+      "rows": 3,
+      "padding": "2rem",
+      "screenshots": {
+        "1600x1200": "./screenshots/olaii-events-1600x1200-landscape.png"
+      }
+    },
+    {
+      "columns": 2,
+      "rows": 4,
+      "padding": "2rem",
+      "screenshots": {
+        "1200x1600": "./screenshots/olaii-events-1200x1600-portrait.png"
+      }
+    },
+    {
+      "rows": 1,
+      "columns": 2,
+      "padding": "1rem",
+      "screenshots": {
+        "800x480": "./screenshots/olaii-events-800x480-landscape.png"
+      }
+    },
+    {
+      "rows": 2,
+      "columns": 2,
+      "padding": "0.5rem",
+      "borderRadius": "0.5rem",
+      "showInfo": false,
+      "showHeader": true,
+      "screenshots": {
+        "800x480": "./screenshots/olaii-events-no-info-800x480-landscape.png"
+      }
+    },
+    {
+      "rows": 2,
+      "columns": 2,
+      "padding": "0",
+      "borderRadius": "0",
+      "showInfo": false,
+      "showHeader": false,
+      "screenshots": {
+        "800x480": "./screenshots/olaii-events-images-only-800x480-landscape.png"
+      }
+    },
+    {
+      "rows": 2,
+      "columns": 1,
+      "padding": "1rem",
+      "screenshots": {
+        "480x800": "./screenshots/olaii-events-480x800-portrait.png"
+      }
+    }
+  ]
+}
