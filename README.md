@@ -21,6 +21,28 @@ paperlesspaper-openintegration render ./config.json --viewport 1200x1600 --outpu
 - `languages/*.json`: localized copy loaded from the host-selected payload language.
 - `api/data.js`: optional local API handler used by the dev server.
 
+## Docker
+
+Bundles Chromium into the image so you don't need to install or path-find a
+browser on the host (see "Fix puppeteer" below for the non-Docker version of
+that problem).
+
+```sh
+# live preview server at http://localhost:4300/__paperless/preview
+docker compose up dev
+
+# one-shot render, written to ./render-output on the host
+docker compose --profile render up render
+```
+
+Without compose:
+
+```sh
+docker build -t olaii-events-paperless-integration .
+docker run --rm -p 4300:4300 olaii-events-paperless-integration
+docker run --rm -v "$PWD/render-output:/app/render-output" olaii-events-paperless-integration \
+  npx paperlesspaper-openintegration render ./config.json --viewport 800x480 --output ./render-output/olaii-events-800x480.png
+```
 
 ## Fix puppeteer 
 
