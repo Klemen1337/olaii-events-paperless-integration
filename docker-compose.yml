@@ -1,23 +1,6 @@
 services:
-  dev:
+  app:
     build: .
     ports:
-      - "4300:4300"
-    volumes:
-      - .:/app
-      - /app/node_modules
-
-  render:
-    build: .
-    profiles: ["render"]
-    volumes:
-      - ./render-output:/app/render-output
-    command:
-      - npx
-      - paperlesspaper-openintegration
-      - render
-      - ./config.json
-      - --viewport
-      - "800x480"
-      - --output
-      - ./render-output/olaii-events-800x480.png
+      - "4300:80"
+    restart: unless-stopped

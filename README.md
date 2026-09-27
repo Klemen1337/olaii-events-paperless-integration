@@ -2,54 +2,44 @@
 
 paperlesspaper OpenIntegration for (Olaii)[https://olaii.com/events/] events.
 
-## Develop
-
-```sh
-npm run start
-npm run check
-
-paperlesspaper-openintegration check ./config.json
-paperlesspaper-openintegration dev ./config.json
-paperlesspaper-openintegration render ./config.json --viewport 800x480 --output render.png
-paperlesspaper-openintegration render ./config.json --viewport 1200x1600 --output render.png
-```
-
-## Files
-
-- `config.json`: integration manifest, defaults, and generated settings form.
-- `render.html`: static render page. It must call `markReady()` when the frame is complete.
-- `languages/*.json`: localized copy loaded from the host-selected payload language.
-- `api/data.js`: optional local API handler used by the dev server.
 
 ## Docker
 
-Bundles Chromium into the image so you don't need to install or path-find a
-browser on the host (see "Fix puppeteer" below for the non-Docker version of
-that problem).
-
 ```sh
-# live preview server at http://localhost:4300/__paperless/preview
-docker compose up dev
-
-# one-shot render, written to ./render-output on the host
-docker compose --profile render up render
-```
-
-Without compose:
-
-```sh
-docker build -t olaii-events-paperless-integration .
-docker run --rm -p 4300:4300 olaii-events-paperless-integration
-docker run --rm -v "$PWD/render-output:/app/render-output" olaii-events-paperless-integration \
-  npx paperlesspaper-openintegration render ./config.json --viewport 800x480 --output ./render-output/olaii-events-800x480.png
-
-
-docker build -t olaii-events-paperless-integration .
-docker login -u USERNAME
 docker build -t klemen1337/olaii-events-paperless-integration:latest .
-docker tag olaii-events-paperless-integration:latest klemen1337/olaii-events-paperless-integration:latest
 docker push klemen1337/olaii-events-paperless-integration:latest
 docker pull klemen1337/olaii-events-paperless-integration:latest
+docker run -d --restart unless-stopped -p 4300:80 klemen1337/olaii-events-paperless-integration:latest
+```
+
+or with Docker Compose using the published image (no checkout needed), e.g. `docker-compose.yml`:
+
+```yaml
+version: "3.8"   # needed by legacy docker-compose v1; ignored by `docker compose` v2
+
+services:
+  olaii-events-paperless-integration:
+    image: klemen1337/olaii-events-paperless-integration:latest
+    container_name: olaii-events
+    ports:
+      - "4300:80"
+    restart: unless-stopped
+```
+
+```sh
+docker compose up -d                          # or `docker-compose up -d` (v1)
+docker compose pull && docker compose up -d   # update to the latest image
+```
+
+
+## Develop
+
+```sh
+npm run start      # preview UI at http://localhost:4300/__paperless/preview
+npm run check
+
+paperlesspaper-openintegration render ./config.json --viewport 800x480 --output render.png
+paperlesspaper-openintegration render ./config.json --viewport 1200x1600 --output render.png
 ```
 
 ## Fix puppeteer 

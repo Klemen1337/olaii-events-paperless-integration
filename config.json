@@ -4,13 +4,14 @@
   "description": "Displays Olaii events on a paperlesspaper eInk display.",
   "renderPage": "./render.html",
   "icon": "./assets/icon.png",
+  "timezone": "Europe/Ljubljana",
   "language": [
     "en",
     "sl",
     "de"
   ],
-  "chromeBin": "C:/Program Files/Google/Chrome/Application/chrome.exe",
   "nativeSettings": {
+    "color": "light",
     "columns": 2,
     "rows": 2,
     "padding": "1rem",
