@@ -42,6 +42,14 @@ docker build -t olaii-events-paperless-integration .
 docker run --rm -p 4300:4300 olaii-events-paperless-integration
 docker run --rm -v "$PWD/render-output:/app/render-output" olaii-events-paperless-integration \
   npx paperlesspaper-openintegration render ./config.json --viewport 800x480 --output ./render-output/olaii-events-800x480.png
+
+
+docker build -t olaii-events-paperless-integration .
+docker login -u USERNAME
+docker build -t klemen1337/olaii-events-paperless-integration:latest .
+docker tag olaii-events-paperless-integration:latest klemen1337/olaii-events-paperless-integration:latest
+docker push klemen1337/olaii-events-paperless-integration:latest
+docker pull klemen1337/olaii-events-paperless-integration:latest
 ```
 
 ## Fix puppeteer 
